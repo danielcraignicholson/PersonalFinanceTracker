@@ -1,9 +1,13 @@
 package com.github.danielcraignicholson;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        DecimalFormat decimalFormat = new DecimalFormat("0.00"); //format to 2 decimal places
+
         System.out.println("Hello, welcome to your Personal Finance Tracker (PFT)!");
         System.out.println("Let's add some transactions and work out your current balance for this month.");
         System.out.print("Press 1 to enter income, press 2 to enter expenses or press 3 to view current balance: ");
@@ -27,8 +31,7 @@ public class Main {
                 System.out.print("Enter childBenefit: ");
                 income.setChildBenefit(scanner.nextDouble());
 
-                System.out.print("Total income: " + income.totalIncome());
-
+                System.out.println("Total income: " + decimalFormat.format(income.totalIncome()));
             }
 
             if (choice == 2) {
@@ -42,15 +45,14 @@ public class Main {
                 System.out.print("Enter miscellaneous: ");
                 expenses.setMiscellaneous(scanner.nextDouble());
 
-                System.out.print("Total expenses: " + expenses.totalExpenses());
-
-
+                System.out.println("Total expenses: " + decimalFormat.format(expenses.totalExpenses()));
             }
-            choice = scanner.nextInt();
 
+            System.out.print("Press 1 to enter income, press 2 to enter expenses or press 3 to view current balance: ");
+            choice = scanner.nextInt();
         }
 
-      //  System.out.println("Balance: " + (income.totalIncome() - expenses.totalExpenses()));
+        System.out.println("Balance: " + decimalFormat.format(income.totalIncome() - expenses.totalExpenses()));
 
     }
 }
